@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+    var req;
+	function send(){
+        req = new XMLHttpRequest();
+        req.onreadystatechange = showResult;
+
+        var keyword = document.getElementById("keyword").value;
+        var url = "search.php?keyword=" + keyword;
+        req.open("GET", url, true);
+        req.send(null);
+    }
+
+    function showResult(){
+        if(req.readyState == 4 && req.status == 200){
+            document.getElementById("result").innerHTML = req.responseText;
+        }
+    }
+</script>
+</head>
+
+<body>
+	<form>
+		Username:<input id="keyword" type="text" onkeyup="send()">
+	</form>
+    <div id="result"></div>
+</body>
+</html>
